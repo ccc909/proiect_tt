@@ -31,3 +31,4 @@ jobs:
             context: .
             push: true
             tags: ghcr.io/ccc909/proiect_tt:latest
+            file: ./Dockerfile
