@@ -1,6 +1,7 @@
 import re
 from collections import defaultdict
 import os
+import time
 
 
 def parse_log(line):
