@@ -1,0 +1,17 @@
+name: 'Build'
+description: 'Build the Image'
+runs:
+    using: 'composite'
+    steps:
+        - name: Build Image
+          run: docker build . -t image:latest
+          shell: bash
+        - name: Save Image
+          run: docker save image:latest -o image.tar
+          shell: bash
+        - name: Upload Image Artifact
+          uses: actions/upload-artifact@v3
+          with:
+            name: image
+            path: image.tar
+        
