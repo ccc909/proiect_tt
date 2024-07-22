@@ -13,6 +13,9 @@ jobs:
     build:
       needs: test
       runs-on: ubuntu-latest
+      permissions:
+        contents: read
+        packages: write
       steps:
         - name: Get Code
           uses: actions/checkout@v4
