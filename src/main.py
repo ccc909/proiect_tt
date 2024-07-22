@@ -240,6 +240,11 @@ def main():
     print(longest_shortest_successful_run_times(log_entries))
     print(most_active_hour_by_app_and_log_type(log_entries))
     print(calculate_failure_rate(log_entries))
+
+    try:
+        while True:
+            time.sleep(60)
+
 """
     Prints the data extraced from the file
     print("Log Entries:")
