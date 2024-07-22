@@ -244,6 +244,8 @@ def main():
     try:
         while True:
             time.sleep(60)
+    except KeyboardInterrupt:
+        print("Container is stopping...")
 
 """
     Prints the data extraced from the file
