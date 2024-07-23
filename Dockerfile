@@ -17,4 +17,4 @@ EXPOSE 9090
 COPY ./src /app
 WORKDIR /app
 
-CMD ["sh", "-c", "prometheus --config.file=/etc/prometheus/prometheus.yml & python main.py"]
+CMD ["sh", "-c", "exec prometheus --config.file=/etc/prometheus/prometheus.yml & exec python main.py"]
