@@ -13,6 +13,9 @@ jobs:
     build:
       needs: test
       runs-on: ubuntu-latest
+      permissions:
+        contents: read
+        packages: write
       steps:
         - name: Get Code
           uses: actions/checkout@v4
@@ -27,4 +30,5 @@ jobs:
           with:
             context: .
             push: true
-            tags: ghcr.io/ccc909/githubactions:latest
+            tags: ghcr.io/ccc909/proiect_tt:latest
+            file: ./Dockerfile

@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: appcontainer
-    image: ghcr.io/ccc909/githubactions:latest
+    image: ghcr.io/ccc909/proiect_tt:latest
     resources:
       limits:
         memory: "128Mi"

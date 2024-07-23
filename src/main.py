@@ -1,6 +1,7 @@
 import re
 from collections import defaultdict
 import os
+import time
 
 
 def parse_log(line):
@@ -240,6 +241,13 @@ def main():
     print(longest_shortest_successful_run_times(log_entries))
     print(most_active_hour_by_app_and_log_type(log_entries))
     print(calculate_failure_rate(log_entries))
+
+    try:
+        while True:
+            time.sleep(60)
+    except KeyboardInterrupt:
+        print("Container is stopping...")
+
 """
     Prints the data extraced from the file
     print("Log Entries:")
