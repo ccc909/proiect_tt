@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: example-replicaset
+  labels:
+    app: example
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: example
+  template:
+    metadata:
+      labels:
+        app: example
+    spec:
+      containers:
+      - name: example-container
+        image: ghcr.io/ccc909/proiect_tt:latest
+        ports:
+        - containerPort: 80
+        - containerPort: 9100
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: example-servicemonitor
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: example
+  endpoints:
+  - port: metrics
+    interval: 30s
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-service
+  labels:
+    app: example
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  - name: metrics
+    port: 9100
+    targetPort: 9100
+  selector:
+    app: example
