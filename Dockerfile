@@ -9,9 +9,12 @@ RUN apt-get update && \
     mv node_exporter-1.5.0.linux-amd64/node_exporter /usr/local/bin/ && \
     rm -rf node_exporter-1.5.0.linux-amd64*
 
+# Set PYTHONUNBUFFERED environment variable
+ENV PYTHONUNBUFFERED=1
+
 # Copy your application code
 COPY ./src /app
 WORKDIR /app
 
-# Start node exporter and your application
-CMD ["sh", "-c", "node_exporter & python main.py"]
+# Start your application, sleep for 3 seconds, then start node exporter
+CMD ["sh", "-c", "python main.py & sleep 3 && node_exporter"]
