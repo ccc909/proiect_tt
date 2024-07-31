@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: example-replicaset
+  name: tt-replicaset
   labels:
-    app: example
+    app: python-and-exporter
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: example
+      app: python-and-exporter
   template:
     metadata:
       labels:
-        app: example
+        app: python-and-exporter
     spec:
       containers:
-      - name: example-container
+      - name: python-container
         image: ghcr.io/ccc909/proiect_tt:latest
         ports:
         - containerPort: 80
@@ -25,13 +25,13 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: example-servicemonitor
+  name: tt-servicemonitor
   labels:
     release: prometheus
 spec:
   selector:
     matchLabels:
-      app: example
+      app: python-and-exporter
   endpoints:
   - port: metrics
     interval: 30s
@@ -40,9 +40,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: example-service
+  name: tt-service
   labels:
-    app: example
+    app: python-and-exporter
 spec:
   ports:
   - name: http
@@ -52,4 +52,4 @@ spec:
     port: 9100
     targetPort: 9100
   selector:
-    app: example
+    app: python-and-exporter
